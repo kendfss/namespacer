@@ -2,7 +2,7 @@ projroot = $(shell pwd)
 projname = $(notdir $(projroot))
 
 projdir = $(projroot)/cmd
-mansrc = $(projroot)/readme.md
+mansrc = $(projroot)/README.md
 manfile = $(projroot)/$(projname).1
 settingsdir = ~/.local/share/$(projname)
 formatter = gofumpt
@@ -35,8 +35,8 @@ PANDOC = $(shell which pandoc)
 
 .PHONY: tidy update fmt run build_bin build_docs install_bin install_docs install docs test_doc remove
 
-install: install_bin install_docs 
-remove: remove_install remove_docs
+install: install_bin  
+remove: remove_install 
 
 tidy:
 	@go mod tidy
@@ -68,7 +68,6 @@ install_bin: build_bin
 	@echo "Successfully installed \"$(projname)\" at \"$(installpath)\""
 	@rm -rf $(builddir)
 
-	
 
 build_docs: $(PANDOC)
 	@pandoc $(mansrc) -s -t man -o $(manfile)
